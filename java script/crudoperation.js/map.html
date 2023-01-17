@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     
+    <script>
+        let data = new Map();
+        let msg = "";
+        function signUp(uname, pwd) {
+            if (data.has(uname)) {
+                throw "User already registered with us!!!"
+            }
+            data.set(uname, pwd);
+
+        }
+        function signIn(uname, pwd) {
+            if (!data.has(uname)) {
+                throw "Username is not available"
+            } else {
+                const success = "User logged in successfully";
+                const failure = "Password is wrong!!!!";
+
+            }
+            return (data.get(uname) == pwd) ? success : failure;
+        }
+        function onLogin() {
+            const uname = document.getElementById("txtLogin").value;
+            const pwd = document.getElementById("txtPwd").value;
+
+            try {
+                msg = signIn(uname, pwd)
+            } catch (ex) {
+                msg = ex;
+            } finally {
+                clearFields();
+            }
+            document.getElementById("pMessage").innerText = msg;
+        }
+        function clearFields() {
+            let fields = document.getElementsByTagName("input");
+            for (let i = 0; i < fields.length; i++) {
+                fields[i].value = ""
+            }
+        }
+        function registerUser() {
+            const uname = document.getElementById("txtNewUser").value;
+            const pwd = document.getElementById("txtNewPwd").value;
+            try {
+                signUp(uname, pwd)
+            } catch (ex) {
+                msg = ex;
+            } finally {
+                clearFields();
+            }
+            document.getElementById("pMessage").innerText = msg;
+        }
+        </script>
+</head>
+<body>
+   
+    
+    <nav>
+        <a href="#">New User? Sing up</a>
+        <a href="#">Sing in</a>
+        <span id="spRegisteredUsers"></span>
+    </nav>
+    <div>
+        <h2>Sign in Page</h2>
+        <hr>
+        <p>UserName: <input type="text" id="txtLogin" placeholder="UserName" /></p>
+        <p>Password:<input type="password" id="txtPwd" placeholder="UserName" /></p>
+        <p>
+            <button onclick="onLogin()">Login</button>
+        </p>
+    </div>
+    
+    <div>
+        <h2>Registration Page</h2>
+        <hr>
+        <p>UserName: <input type="text" id="txtNewUser" placeholder="UserName" /></p>
+        <p>Password:<input type="password" id="txtNewPwd" placeholder="UserName" /></p>
+        <p>
+            <button onclick="registerUser()">Register</button>
+        </p>
+    </div>
+    <p id="pMessage" style="color:red">
+    
+    </p>
+    
+</body>
+</html>

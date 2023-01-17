@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function save()
+         {
+            let b=document.getElementById("txt").value;
+            localStorage.setItem("somename",b);
+        }
+
+        function see()
+        {
+            if(localStorage.getItem("somename") == null)
+            {
+                alert("no data is set");
+                return;
+            }
+            document.getElementById("pdisplay").innerText=localStorage.getItem("somename");
+        }
+    </script>
+</head>
+<body>
+    <h1>Local storage</h1>
+    <hr>
+    <div>
+        <p>
+            enter the data
+            <input id="txt">
+            <button onclick="save()">submit</button>
+        </p>
+    </div>
+    <div>
+        <button onclick="see()">see data</button>
+        <p id="pdisplay"></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script> 
+// <!-- 
+//     function createDate() 
+//     {
+//         year=parseInt(prompt("enter the year"));
+//         month=parseInt(prompt("enter the month"));
+//         date=parseInt(prompt("enter the date"));
+//         return Date(year,month,date);
+//     }
+//             function showdate() {
+//                 alert(new Date());
+//                 alert(new Date(1999, 11, 29));
+//                 const b = createDate();
+//                 document.getElementById("pdisply").innerText = b;
+//             } -->
+function msg(){
+    const currentDt = new Date();
+    const hr = currentDt.getHours();
+    const min = currentDt.getMinutes();
+    const sec = currentDt.getSeconds();
+    const strContent =`${hr} : ${min} : ${sec}`;
+    document.getElementById("lbltxt").innerHTML=strContent;
+}
+function settimeout(){
+    return setTimeout(msg,1000);
+}
+function setinterval(){
+    
+    return setInterval(msg,2000);
+}
+    </script>
+</head>
+<body>
+    <h1>Date shown</h1>
+    <hr>
+    <h2>settime and setinterval</h2>
+
+    <button onclick="settimeout()">settime</button>
+    <button onclick="setinterval()">settime Interval</button>
+    <label id="lbltxt"></label>
+
+    <!-- <button onclick="showdate()">show the date time</button>
+    <p id="pdisply"></p> -->
+</body>
+</html>

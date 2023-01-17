@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./book.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Curd opertion</h1>
+    </div>
+    <div>
+        <input type="text" id="nam" placeholder="enter the book">
+        <button onclick="onadd()">add</button>
+        <button onclick="deleteItem()">X</button>
+        <button>edit</button>
+    </div>
+    <div>
+        <p id="pdisplay">
+                <ol id="list"></ol>
+        </p>
+       
+    </div>
+    
+</body>
+        <script>
+            const onedit=function(id){
+                const newitem=prompt("enter the name");
+                updateItem(id,newitem);
+                populate();
+            }
+            const ondelete=function(id){
+                deleteItem(id,newitem);
+                populate();
+            }
+            const populate=function(){
+            let d=document.getElementById("list");
+           d.innerHTML="";
+            const data=getAll();
+            for (let i = 0; i < data.length; i++) {
+                    const line=`<li>${data[i]}
+                        <a href="#" onclick="ondelete(${i})">del</a>
+                        <a href="#" onclick="onedit(${i})">ed</a>
+                        
+                        
+                        </li>`;
+                       
+                   d.innerHTML+=line;
+                
+            }
+        }
+            const onadd=function(){
+                const name=document.getElementById("nam").value;
+                addItem(name);
+                alert("book add suucess");
+                populate();
+            }
+        </script>
+   
+    <script>
+    
+        document.getElementById("pdisplay").innerText=book;
+    </script>
+</html>

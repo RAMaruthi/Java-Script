@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./repo.js"></script>
+    <script>
+        function createRow(emp){
+            let row=document.createElement("tr");
+            row.innerHTML=`<td>${emp.empid}</td>
+                             <td>${emp.empname}</td>
+                             <td>${emp.empsalary}</td>`;
+                                return row;
+        }
+        window.addEventListener("load",function(){
+           populate();
+            }
+        )
+        function populate(){
+                //get the table element....
+                const table = document.querySelector("#records");
+                //get the heading element....
+                const firstRow = document.querySelector("#theading");
+                table.innerHTML = "";//remove all the elements
+                table.appendChild(firstRow);//add the heading
+                for(const emp of data){//iterate thro the array
+                    let row = createRow(emp);//Create row to the table
+                    table.appendChild(row);//add the row to the table
+                }
+            }
+
+
+        function onedit(){
+            const id=prompt("enter the id of employe to edit");
+          try{
+              const getsEmp = i.getEmp(id);
+              document.getElementById("txtid").value= getsEmp.empid;
+              document.getElementById("txtname").value= getsEmp.empname;
+              document.getElementById("txtsalary").value= getsEmp.empsalary;
+          } catch(ex){
+              alert(ex);
+          }
+        }
+        function add(){
+            const id=document.getElementById("txtid").value;
+            const name=document.getElementById("txtname").value;
+            const salary=document.getElementById("txtsalary").value;
+            const s=  new emp(id, name, salary)
+             console.log(s);
+                try {
+                    i.addEmp(s);
+                    populate();
+                } catch (error) {
+                    alert(error)
+                }
+        }
+        function onsave(){
+            const id=document.getElementById("txtid").value;
+            const name=document.getElementById("txtname").value;
+            const salary=document.getElementById("txtsalary").value;
+            const s=  new emp(id, name, salary)
+             console.log(s);
+                try {
+                    i.updateEmployee(s);
+                    populate();
+                } catch (error) {
+                    alert(error)
+                }
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Employ monitaring system</h1>
+    <hr>
+    <nav>
+        <a href="#" onclick="onedit()">edit record</a>
+        <a href="#" onclick="ondelet()">delet record</a>
+        <a href="#" onclick="onadd()">add record</a>
+    </nav>
+    <div>
+        <h2>list of empy</h2>
+        <hr>
+       <table id="records" border="1">
+            <tr id="theading">
+                    <th>emp id</th>
+                    <th>emp name</th>
+                    <th>emp salary</th>
+                </tr>
+       </table>
+    </div>
+    <div> 
+        <p>empid  <input id="txtid"> </p>
+        <p>empname  <input id="txtname"> </p>
+        <p>empname <input id="txtsalary"> </p>
+        <button onclick="onsave()">savechanges</button>
+        <button onclick="add()">add</button>
+        
+    </div>
+    <div></div>
+</body>
+</html>
